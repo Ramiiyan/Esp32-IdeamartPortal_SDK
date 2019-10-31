@@ -90,7 +90,7 @@ boolean ConnectToMQTT() {
 
 // Publishing the Event as Json Object
 void sendVal(int val) {
-  sprintf(setmsg,"{\"eventName\":\"TesterDev\",\"status\":\"none\",\"value\":\"%d\",\"param\":{\"mac\":\"2952727675078424\"}}",val); //change your mac address
+  sprintf(setmsg,"{\"eventName\":\"XXXXXXXX\",\"status\":\"none\",\"value\":\"%d\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXXXXXXXX\"}}",val); //change your mac address
   if (!mqtt.publish(PUB_TOPIC, setmsg)){
     Serial.println(F("Publish Event Failed."));
   }else{

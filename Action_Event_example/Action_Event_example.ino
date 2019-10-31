@@ -14,8 +14,8 @@
 //  String off = "{\"action\":\"off\",\"param\":{\"mac\":\"2951212455078424\"}}";
 
 // Replace the XXXX with your developer credentials
-String on = "{\"action\":\"on\",\"param\":{\"mac\":\"2952727675078424\"}}"; 
-String off = "{\"action\":\"off\",\"param\":{\"mac\":\"2952727675078424\"}}";
+String on = "{\"action\":\"XXX\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXXXXX\"}}"; 
+String off = "{\"action\":\"XXX\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXXXXXX\"}}";
 
 String clientId = "";
 char getmsg[100];
@@ -133,7 +133,7 @@ void callBack(char *t, byte *payload, unsigned int l) {
 }
 
 void sendVal(int val) {
-  sprintf(setmsg,"{\"eventName\":\"testerDEV\",\"status\":\"none\",\"value\":\"%d\",\"param\":{\"mac\":\"2952727675078424\"}}",val); //change your mac address
+  sprintf(setmsg,"{\"eventName\":\"XXXXXXXXX\",\"status\":\"none\",\"value\":\"%d\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXXX\"}}",val); //change your mac address
   if (!mqtt.publish(PUB_TOPIC, setmsg)) {
     Serial.println(F("Publish Event Failed."));
   }else {

@@ -18,8 +18,8 @@
 //  String on   = "{\"action\":\"on\",\"param\":{\"mac\":\"2951212455078424\"}}"; 
 //  String off  = "{\"action\":\"off\",\"param\":{\"mac\":\"2951212455078424\"}}";
 
-String on = "{\"action\":\"on\",\"param\":{\"mac\":\"2952727675078424\"}}"; 
-String off = "{\"action\":\"off\",\"param\":{\"mac\":\"2952727675078424\"}}";
+String on = "{\"action\":\"XXX\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXXXXX\"}}"; 
+String off = "{\"action\":\"XXX\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXXXXX\"}}";
 
 String clientId = "";
 char getmsg[100];
