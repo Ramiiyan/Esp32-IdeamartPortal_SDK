@@ -18,8 +18,8 @@
 //  String on   = "{\"action\":\"on\",\"param\":{\"mac\":\"2951212455078424\"}}"; 
 //  String off  = "{\"action\":\"off\",\"param\":{\"mac\":\"2951212455078424\"}}";
 
-String on       = "{\"action\":\"on\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXXX\"}}"; 
-String off      = "{\"action\":\"off\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXX\"}}";
+String on = "{\"action\":\"on\",\"param\":{\"mac\":\"2952727675078424\"}}"; 
+String off = "{\"action\":\"off\",\"param\":{\"mac\":\"2952727675078424\"}}";
 
 String clientId = "";
 char getmsg[100];
@@ -34,9 +34,9 @@ void setup() {
   digitalWrite(ideaBoard_PWRKEY, HIGH);
   delay(10);
   Serial.print("IdeaBoard initializing...");
-  SerialSIM.begin(4800);
-  modem.setNetworkMode(38); // 38-nbiot 13-gsm
-  modem.setPreferredMode(2);  //<-- Uncomment this, if you are using nbiot(nbiot),. comment this if you are using dialogbb(gsm)
+  SerialSIM.begin(9600, SERIAL_8N1, (int8_t) 16, (int8_t) 17); //tx-16 rx-17
+  modem.setNetworkMode(13); // 38-nbiot 13-gsm
+  //modem.setPreferredMode(2);  //<-- Uncomment this, if you are using nbiot(nbiot),. comment this if you are using dialogbb(gsm)
   modem.getModemName();
 
   modem.restart();
@@ -50,7 +50,7 @@ void setup() {
     Serial.print(F("Signal Strength : "));
     Serial.println(modem.getSignalQuality());
 
-    if (!modem.gprsConnect(NB_APN, "", "")) {  //NB_APN for nbiot || GSM_APN for gsm
+    if (!modem.gprsConnect(GSM_APN, "", "")) {  //NB_APN for nbiot || GSM_APN for gsm
       Serial.println(F("GPRS Fail"));
     }else {
       Serial.println(F("GPRS Connected"));
@@ -96,9 +96,9 @@ boolean ConnectToMQTT(){
 }
 
 // CallBack Function for Receive Msg as Json Object.
-void CallBack(char *t, byte *payload, int l){
+void CallBack(char *t, byte *payload, unsigned int l){
   Serial.println(F("Action message is Received."));
-  for (int i = 0; i < l; i++){
+  for (unsigned int i = 0; i < l; i++){
     getmsg[i] = (char)payload[i];
   }
 

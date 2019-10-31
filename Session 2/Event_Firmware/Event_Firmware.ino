@@ -25,7 +25,7 @@ void setup() {
   digitalWrite(ideaBoard_PWRKEY, HIGH);
   delay(10);
 
-  SerialSIM.begin(4800);
+  SerialSIM.begin(9600, SERIAL_8N1, (int8_t) 16, (int8_t) 17); //tx-16 rx-17
   modem.setNetworkMode(13); // 38-nbiot 13-gsm
   //modem.setPreferredMode(2);  //<-- Uncomment this, if you are using nbiot,.
   modem.getModemName();
@@ -90,7 +90,7 @@ boolean ConnectToMQTT() {
 
 // Publishing the Event as Json Object
 void sendVal(int val) {
-  sprintf(setmsg,"{\"eventName\":\"XXXXXXXX\",\"status\":\"none\",\"value\":\"%d\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXX\"}}",val); //change your mac address
+  sprintf(setmsg,"{\"eventName\":\"TesterDev\",\"status\":\"none\",\"value\":\"%d\",\"param\":{\"mac\":\"2952727675078424\"}}",val); //change your mac address
   if (!mqtt.publish(PUB_TOPIC, setmsg)){
     Serial.println(F("Publish Event Failed."));
   }else{

@@ -14,8 +14,8 @@
 //  String off = "{\"action\":\"off\",\"param\":{\"mac\":\"2951212455078424\"}}";
 
 // Replace the XXXX with your developer credentials
-String on = "{\"action\":\"XXX\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXXX\"}}"; 
-String off = "{\"action\":\"XXX\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXXX\"}}";
+String on = "{\"action\":\"on\",\"param\":{\"mac\":\"2952727675078424\"}}"; 
+String off = "{\"action\":\"off\",\"param\":{\"mac\":\"2952727675078424\"}}";
 
 String clientId = "";
 char getmsg[100];
@@ -57,7 +57,10 @@ void setup() {
       Serial.println(F("GPRS Connected."));
       Serial.println(getCPSI());
       mqtt.setServer(MQTT_HOST, MQTT_PORT);
-      mqtt.setCallback(CallBack);
+     mqtt.setCallback(callBack);
+//      mqtt.setCallback([this] (char* t, byte* payload, unsigned int l) {
+//        this->callBack(t, payload, l); 
+//      });
     }
   }
 }
@@ -106,10 +109,10 @@ boolean ConnectToMQTT(){
   return mqtt.connected();
 }
 
-void CallBack(char *t, byte *payload, int l) {
+void callBack(char *t, byte *payload, unsigned int l) {
   Serial.println(F("Action message is Received."));
-  
-  for (int i = 0; i < l; i++){
+
+  for (unsigned int i = 0; i < l; i++){
     getmsg[i] = (char)payload[i];
   }
   
@@ -130,7 +133,7 @@ void CallBack(char *t, byte *payload, int l) {
 }
 
 void sendVal(int val) {
-  sprintf(setmsg,"{\"eventName\":\"XXXXXXXX\",\"status\":\"none\",\"value\":\"%d\",\"param\":{\"mac\":\"XXXXXXXXXXXXXXXX\"}}",val); //change your mac address
+  sprintf(setmsg,"{\"eventName\":\"testerDEV\",\"status\":\"none\",\"value\":\"%d\",\"param\":{\"mac\":\"2952727675078424\"}}",val); //change your mac address
   if (!mqtt.publish(PUB_TOPIC, setmsg)) {
     Serial.println(F("Publish Event Failed."));
   }else {

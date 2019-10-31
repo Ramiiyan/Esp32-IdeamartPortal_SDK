@@ -2,7 +2,6 @@
 #include <Arduino.h>
 #include <PubSubClient.h>
 #include <TinyGsmClient.h>
-#include <SoftwareSerial.h>
 
 // change these topics and mqtt details with your Ideamart developer portal.
 
@@ -12,10 +11,10 @@
 //  #define MQTT_PASSWORD   "108644667_9876"
 
 // Replace the XXXX with your developer credentials
-#define PUB_TOPIC           "XXXXXXXXXXXXXXXXXXXXXXXXX" 
+#define PUB_TOPIC           "tester/testing/v1/common"                 //Publishing Topic
 
-#define MQTT_USERNAME       "XXXXXXXXXXXXXXXXXXXXXX"
-#define MQTT_PASSWORD       "XXXXXXXXXXXXXXXX"
+#define MQTT_USERNAME       "tester-testing-v1_2589"
+#define MQTT_PASSWORD       "1563971290_2589"
 
 #define MQTT_HOST           "mqtt.iot.ideamart.io" 
 #define MQTT_PORT           1883
@@ -27,7 +26,7 @@
 #define GSM_APN             "dialogbb"
 #define NB_APN              "nbiot"
 
-SoftwareSerial SerialSIM(ideaBoard_TX, ideaBoard_RX);
+HardwareSerial SerialSIM(2);
 TinyGsm modem(SerialSIM);
 TinyGsmClient client(modem);
 PubSubClient mqtt(client);
